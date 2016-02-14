@@ -11,3 +11,5 @@ module MongoMapper
 end
 
 require 'mongo_mapper/exts/embedded_document_finder'
+require 'mongo_mapper/exts/unique_name'
+require 'mongo_mapper/exts/duplicator'

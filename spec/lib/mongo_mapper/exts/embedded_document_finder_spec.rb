@@ -115,7 +115,7 @@ describe MongoMapper::Exts::EmbeddedDocumentFinder do
   context "embedded document does not exist" do
 
     it "raises an exception" do
-      expect{ EmbeddedDocumentWithFinder.find! BSON::ObjectId.new }.to raise_error
+      expect{ EmbeddedDocumentWithFinder.find! BSON::ObjectId.new }.to raise_error(MongoMapper::DocumentNotFound)
     end
 
   end

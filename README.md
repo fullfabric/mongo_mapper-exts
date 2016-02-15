@@ -72,6 +72,23 @@ child.name # __work_group_a
 
 ```
 
+### S3Url::Proxy
+
+Adds 'path' key and updates it based on the value of 'url'. While 'url' stores the original S3 path,
+'path' stores the path used by our S3 proxy, allowing us to serve S3 files securily.
+
+```ruby
+class ProxyTestSubject
+
+  include MongoMapper::Document
+
+  key :url, String
+
+  include MongoMapper::Exts::S3Url::Proxy
+
+end
+```
+
 ## Documentation
 
 Run the yard server with the parameters below to have documentation available locally at http://0.0.0.0:9000/

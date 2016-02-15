@@ -1,26 +1,84 @@
 # MongoMapper::Exts
 
-TODO: Write a gem description
+Extensions for MongoMapper
 
 ## Installation
-
-Add this line to your application's Gemfile:
 
 ```ruby
 gem 'mongo_mapper-exts'
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install mongo_mapper-exts
-
 ## Usage
 
-TODO: Write usage instructions here
+This gem provides several modules that can be included in MongoMapper documents. Please see the specific module documentation for details.
+
+## Modules
+
+### Duplicator
+
+```ruby
+class User
+  include MongoMapper::Exts::Duplicator
+end
+
+attributes = user.duplicate_attributes({ blacklist: 'password_hash' })
+```
+
+### EmbeddedDocumentFinder
+
+Finds embedded documents by id. Implements #find, #find! and aliases #find_by_id and #find_by_id!
+
+```ruby
+class Institutions::ClassOf
+  include MongoMapper::EmbeddedDocument
+  include MongoMapper::Exts::EmbeddedDocumentFinder
+  find_through 'Institutions::Programme', path: 'classes'
+end
+
+Institutions::ClassOf.find!(BSON::ObjectId('56c1048d6e3df19c3e0001db'))
+```
+
+### UniqueName
+
+Creates a unique name based on a label.
+
+```ruby
+class ParentDocument
+
+  include MongoMapper::Document
+
+  many :children, class: ChildDocument
+
+end
+
+class ChildDocument
+
+  include MongoMapper::EmbeddedDocument
+  include MongoMapper::Exts::UniqueName
+
+  unique_name :children
+
+  embedded_in :parent_document
+
+  key :name, String
+  key :label, String
+
+end
+
+document = ParentDocument.new
+document.children << child = ChildDocument.new( label: "Work Group A" )
+
+child.name # __work_group_a
+
+```
+
+## Documentation
+
+Run the yard server with the parameters below to have documentation available locally at http://0.0.0.0:9000/
+
+```
+yard server -r -p 9000
+```
 
 ## Contributing
 

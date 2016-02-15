@@ -5,6 +5,10 @@ module MongoMapper
       def duplicate
       end
 
+      # Returns a copy of the attributes of the object it is called on.
+      #
+      # @option options [Array] :blacklist a list of attributes to ignore
+      # @return [Hash ] a hash of attributes
       def duplicate_attributes options = {}
 
         blacklist = options.fetch( :blacklist, [] )

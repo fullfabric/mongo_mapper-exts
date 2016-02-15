@@ -10,6 +10,12 @@ module MongoMapper
 
       module ClassMethods
 
+        # Sets up finder
+        #
+        # @param [String] class name
+        # @option options [String] path
+        # @option options [String] nodes
+        # @option options [String] clause
         def find_through class_or_class_name, options = {}
 
           options = HashWithIndifferentAccess.new( options )
@@ -30,6 +36,11 @@ module MongoMapper
           super
         end
 
+        # Finds entity by id
+        #
+        # @param [BSON::ObjectId, String] id
+        # @option options [Hash]
+        # @return [Object, nil] the object or nil if not found
         def find id, options = {}
 
           raise "class or class name required" unless @klass.present?
@@ -47,6 +58,12 @@ module MongoMapper
           nil
         end
 
+        # Finds entity by id
+        #
+        # @param [BSON::ObjectId, String] id
+        # @param options [Hash]
+        # @return [Object] the object
+        # @raise [MongoMapper::DocumentNotFound] if not found
         def find! id, options = {}
 
           find( id, options ) ||
@@ -54,10 +71,12 @@ module MongoMapper
 
         end
 
+        # @see #find
         def find_by_id id, options = {}
           find id, options = {}
         end
 
+        # @see #find!
         def find_by_id! id, options = {}
           find! id, options = {}
         end

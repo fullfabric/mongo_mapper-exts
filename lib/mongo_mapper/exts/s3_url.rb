@@ -11,7 +11,8 @@ module MongoMapper
         extend ActiveSupport::Concern
 
         included do
-          key :path, String, required: true
+
+          key :path, String, required: false
 
           alias_method :original_url=, :url=
 
@@ -19,6 +20,7 @@ module MongoMapper
             self.original_url = value
             update_path
           end
+
         end
 
         private

@@ -19,13 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'mongo_mapper', '0.13.1'
-  spec.add_dependency 'bson_ext', '1.8.2'
   spec.add_dependency 'contracts'
   spec.add_dependency 'activesupport'
-  # spec.add_dependency 'strong_parameters', '0.1.6'
-
-  # spec.add_dependency 'mime-types', '>= 1.16'
-  # spec.add_dependency 'ruby-filemagic', '0.7.1'
 
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake', '~> 10.0'
@@ -38,6 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'faker'
   spec.add_development_dependency 'binding_of_caller'
   spec.add_development_dependency 'pry-byebug'
-
 
 end

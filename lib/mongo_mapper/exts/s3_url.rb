@@ -34,18 +34,13 @@ module MongoMapper
       end
 
       def self.origin_to_application_path(s3_url, opts={})
-        return s3_url if s3_url.blank?
-        s3_url.gsub(ORIGIN_DOMAIN_NAME_PATTERN, opts.fetch(:public, false) ? 'public/files' : 'files')
+        ::MongoMapper::S3UriFactory.build_path_from_url(s3_url, opts)
       end
 
       def self.upload_params_to_s3_url(params)
-        "#{ORIGIN_DOMAIN_NAME}/#{params[:url]}.#{params[:format]}"
+        ::MongoMapper::S3UriFactory.build_s3_url_from_http_params(params)
       end
 
-      private
-
-        ORIGIN_DOMAIN_NAME         = "https://s3-eu-west-1.amazonaws.com"
-        ORIGIN_DOMAIN_NAME_PATTERN = Regexp.new(ORIGIN_DOMAIN_NAME)
     end
   end
 end

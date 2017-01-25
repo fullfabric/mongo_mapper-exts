@@ -2,6 +2,7 @@ require 'contracts'
 require 'mongo_mapper'
 require 'active_support'
 
+require "mongo_mapper/s3_uri_factory"
 require "mongo_mapper/exts/version"
 
 

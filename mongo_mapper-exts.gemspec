@@ -18,19 +18,21 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'mongo_mapper', '0.13.1'
   spec.add_dependency 'contracts'
+  spec.add_dependency 'mongo_mapper'
   spec.add_dependency 'activesupport', '~> 3.2'
 
-  spec.add_development_dependency 'bundler', '~> 1.6'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake'
 
-  spec.add_development_dependency 'listen', '~> 2.7'
-  spec.add_development_dependency 'rspec', '~> 3.2'
-  spec.add_development_dependency 'rspec-its', '~> 1.2'
+ # lock listen to avoid issues with ruby_deps on 2.1.5
+  spec.add_development_dependency 'listen', '3.0.8'
+
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rspec-its'
   spec.add_development_dependency 'rspec-nc'
-  spec.add_development_dependency 'guard-rspec', '~> 4.5'
-  spec.add_development_dependency 'factory_girl', '~> 4.2.0'
+  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency 'factory_girl'
   spec.add_development_dependency 'faker'
   spec.add_development_dependency 'binding_of_caller'
   spec.add_development_dependency 'pry-byebug'

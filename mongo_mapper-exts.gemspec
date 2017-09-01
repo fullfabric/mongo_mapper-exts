@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'factory_girl'
   spec.add_development_dependency 'faker'
   spec.add_development_dependency 'binding_of_caller'
+  spec.add_development_dependency 'byebug', '9.0.6'
   spec.add_development_dependency 'pry-byebug'
 
 end

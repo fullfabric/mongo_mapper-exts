@@ -2,7 +2,7 @@ module MongoMapper
   class S3UriFactory
 
     ORIGIN_DOMAIN_NAME         = "https://s3-eu-west-1.amazonaws.com"
-    ORIGIN_DOMAIN_NAME_PATTERN = Regexp.new(ORIGIN_DOMAIN_NAME)
+    ORIGIN_DOMAIN_NAME_PATTERN = Regexp.new("https://s3[-.]eu-west-1.amazonaws.com")
 
     def self.build_path_from_url(url_on_s3, opts={})
       return url_on_s3 if url_on_s3.blank?

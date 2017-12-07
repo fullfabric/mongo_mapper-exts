@@ -7,8 +7,18 @@ describe MongoMapper::S3UriFactory do
   let(:public_application_path) { "public/files/#{file_path}" }
 
   describe '.build_path_from_url' do
-    it 'creates download path' do
-      expect(described_class.build_path_from_url(s3_url)).to eq application_path
+    context 'creates download path' do
+      # There are two types of AWS URLs: http://www.wryway.com/blog/aws-s3-url-styles/
+      it 'creates download path for https://s3-eu-west-1.amazonaws.com' do
+        expect(described_class.build_path_from_url(s3_url)).to eq application_path
+      end
+
+      it 'creates download path for https://s3.eu-west-1.amazonaws.com' do
+        s3_hostname = "https://s3.eu-west-1.amazonaws.com"
+        s3_url      = "#{s3_hostname}/#{file_path}"
+
+        expect(described_class.build_path_from_url(s3_url)).to eq application_path
+      end
     end
 
     it 'creates public download path' do

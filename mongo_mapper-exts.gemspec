@@ -19,13 +19,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'contracts'
-  spec.add_dependency 'mongo_mapper'
-  spec.add_dependency 'activesupport', '~> 3.2'
+  spec.add_dependency 'mongo_mapper', '0.14.0'
+  spec.add_dependency 'activesupport', '~> 4'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
 
- # lock listen to avoid issues with ruby_deps on 2.1.5
+  # lock listen to avoid issues with ruby_deps on 2.1.5
   spec.add_development_dependency 'listen', '3.0.8'
 
   spec.add_development_dependency 'rspec'

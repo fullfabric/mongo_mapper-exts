@@ -3,7 +3,7 @@ describe MongoMapper::S3UriFactory do
   let(:s3_hostname)             { "https://s3-eu-west-1.amazonaws.com" }
   let(:s3_hostname_alt)         { "https://s3.eu-central-1.amazonaws.com" }
 
-  let(:s3_file_path)            { "bucket/tenant/subfolder/file.pdf" }
+  let(:s3_file_path)            { "bucket-name/tenant/subfolder/file.pdf" }
   let(:s3_url)                  { "#{s3_hostname}/#{s3_file_path}"}
   let(:application_path)        { "files/subfolder/file.pdf" }
   let(:public_application_path) { "public/files/subfolder/file.pdf" }

@@ -5,7 +5,7 @@ module MongoMapper
       return url_on_s3 if url_on_s3.blank?
       # match https://s3-eu-west-1.amazonaws.com/fullfabric.development/tbs and replace
       # using this regex means we don't need to know the actual bucket/tenant
-      regex = Regexp.new("https://s3[-.].*amazonaws.com/[a-z\.]+/[a-z]+/")
+      regex = Regexp.new("https://s3[-.].*amazonaws.com/[a-z\.\-]+/[a-z]+/")
       url_on_s3.gsub(regex, opts.fetch(:public, false) ? 'public/files/' : 'files/')
     end
 

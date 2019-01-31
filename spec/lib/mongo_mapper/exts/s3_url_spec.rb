@@ -48,7 +48,8 @@ describe MongoMapper::Exts::S3Url do
 
     context 'upload parameters' do
       it 'to S3 URL' do
-        params = {url: s3_file_path[0..-5], format: 'pdf'}
+        s3_file_path_without_extension = s3_file_path[0..-5]
+        params = { url: s3_file_path_without_extension, format: 'pdf' }
         expect(MongoMapper::Exts::S3Url.upload_params_to_s3_url(params)).to eq s3_url
       end
     end

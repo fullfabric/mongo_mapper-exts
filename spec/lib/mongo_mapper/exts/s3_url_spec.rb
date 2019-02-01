@@ -1,11 +1,12 @@
-require 'spec_helper'
-
 describe MongoMapper::Exts::S3Url do
+
   let(:s3_hostname)             { "https://s3-eu-west-1.amazonaws.com" }
-  let(:file_path)               { "bucket.name/root/subfolder/file.pdf" }
-  let(:s3_url)                  { "#{s3_hostname}/#{file_path}"}
-  let(:application_path)        { "files/#{file_path}" }
-  let(:public_application_path) { "public/files/#{file_path}" }
+  let(:s3_hostname_alt)         { "https://s3.eu-central-1.amazonaws.com" }
+
+  let(:s3_file_path)            { "bucket/tenant/subfolder/file.pdf" }
+  let(:s3_url)                  { "#{s3_hostname}/#{s3_file_path}"}
+  let(:application_path)        { "files/subfolder/file.pdf" }
+  let(:public_application_path) { "public/files/subfolder/file.pdf" }
 
   describe MongoMapper::Exts::S3Url::Proxy do
     class ProxyTestSubject
@@ -47,7 +48,8 @@ describe MongoMapper::Exts::S3Url do
 
     context 'upload parameters' do
       it 'to S3 URL' do
-        params = {url: file_path[0..-5], format: 'pdf'}
+        s3_file_path_without_extension = s3_file_path[0..-5]
+        params = { url: s3_file_path_without_extension, format: 'pdf' }
         expect(MongoMapper::Exts::S3Url.upload_params_to_s3_url(params)).to eq s3_url
       end
     end
